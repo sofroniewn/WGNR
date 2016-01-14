@@ -75,10 +75,11 @@ cd(rig_config.base_dir)
 % addpath(fullfile('.','accessory_fns','plot_functions','histogram_plots'));
 
 handles.A_inv = rig_config.A_inv;
-handles.trial_mat_names = {'x_vel','y_vel','cor_pos','cor_width','laser_power','x_mirror_pos','y_mirror_pos', ...
-    'trial_num','inter_trial_trig','lick_state','water_earned','running_ind', ...
-    'masking_flash_on','scim_state','external_water','scim_logging','test_val'};
-handles.iti_ind = find(strcmp(handles.trial_mat_names,'inter_trial_trig'));
+handles.names = {'xSpeed','ySpeed','corPos','corWidth','laserPower','xMirrorPos','yMirrorPos', ...
+    'trialNum','itiPeriod','lickState','trialWater','running', ...
+    'maskingFlash','scimState','extWater','scimLogging','testVal'};
+
+handles.iti_ind = find(strcmp(handles.names,'itiPeriod'));
 
 % Load trial configuration file
 load_trial_config_Callback(handles.load_trial_config, eventdata, handles);
@@ -353,7 +354,7 @@ switch get(hObject,'value')
             jtcp('write',handles.jTcpObj,mssg);
             mssg = tcp_struct_parser(trial_config,'trial_config',1);
             jtcp('write',handles.jTcpObj,mssg);
-            jtcp('write',handles.jTcpObj,{'trial_mat_names',handles.trial_mat_names});
+            jtcp('write',handles.jTcpObj,{'names',handles.names});
             mssg = tcp_struct_parser(ps_sites,'ps_sites',1);
             jtcp('write',handles.jTcpObj,mssg);
             jtcp('write',handles.jTcpObj,{'Start run'});
@@ -361,8 +362,8 @@ switch get(hObject,'value')
 
         
         % Get globals file name
-        fileIn = fullfile('.','globals',rig_config.globals_name);
-        fileOut = fullfile('.','globals',[rig_config.globals_name(1:end-2) '_used.c']);
+        fileIn = fullfile(rig_config.base_dir,'globals',rig_config.globals_name);
+        fileOut = fullfile(rig_config.base_dir,'globals',[rig_config.globals_name(1:end-2) '_used.c']);
         text_replacer(trial_config,rig_config,ps_sites,fileIn,fileOut);
         G = wrap_c_file_in_string(fileOut);
         
