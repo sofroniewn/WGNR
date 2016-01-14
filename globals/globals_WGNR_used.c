@@ -6,44 +6,44 @@
 /******************************************/
 /* TRIAL PARAMETERS SET FROM MATLAB */
 const unsigned trial_num_types = 1; /* Number of trial types */
-const unsigned trial_num_turns = 3; /* Max number of trial turns */
+const unsigned trial_num_turns = 1; /* Max number of trial turns */
 const unsigned trial_num_gain = 1; /* Max number of trial gain changes */
 const unsigned trial_num_open_loop = 2; /* Max number of trial corridor open loop changes */
 const unsigned trial_num_cor_widths = 2; /* Max number of trial corridor width changes */
 const unsigned trial_num_water_drops = 1; /* Max number of water drops per trial */
 const unsigned trial_random_order = 1; /* 1 if in random order, 0 if in sequence */
 const unsigned trial_num_sequence_length = 0; /* 0 if random, otherwise length of sequence */
-const unsigned trial_num_sequence[1] = {0}; /* 1 if random, sequence */
-const unsigned trial_num_repeats[1] = {0}; /* 1 if random, num repeats */
+const unsigned trial_num_sequence[1] = {1}; /* 1 if random, sequence */
+const unsigned trial_num_repeats[1] = {1}; /* 1 if random, num repeats */
 
 const unsigned laser_calibration_mode = 0;
 
 const unsigned trial_type[1] = {1}; /* Trial type, 1 for distance, 0 for time */
-const double trial_duration[1] = {200}; /* Trial duration, (cm) for distance, (s) for time */
+const double trial_duration[1] = {100}; /* Trial duration, (cm) for distance, (s) for time */
 const double trial_timeout[1] = {12}; /* Trial timeout (s) */
 const double trial_iti[1] = {1}; /* Intertrial interval (s) */
-const unsigned trial_left_wall[1] = {1}; /* 1 if left wall on, 0 if left wall off */
-const unsigned trial_right_wall[1] = {1}; /* 1 if right wall on, 0 if right wall off */
+const unsigned trial_left_wall[1] = {0}; /* 1 if left wall on, 0 if left wall off */
+const unsigned trial_right_wall[1] = {0}; /* 1 if right wall on, 0 if right wall off */
 const unsigned trial_cor_reset[1] = {1}; /* 1 for reset walls at beginning of trial, 0 otherwise */
 const double trial_ol_positions[1][2] = {{0, 1}}; /* Change positions in corridor width */
 const double trial_ol_values[1][2] = {{15, 15}}; /* Corridor width (mm) */
 const double trial_cor_width_positions[1][2] = {{0, 1}}; /* Change positions in corridor width */
 const double trial_cor_width[1][2] = {{30, 30}}; /* Corridor width (mm) */
-const double trial_turn_positions[1][2] = {{0, 1}}; /* Turn positions within trial */
+const double trial_turn_positions[1][2] = {{0,  1}}; /* Turn positions within trial */
 const double trial_turn_values[1][1] = {{0}}; /* Turn angles if closed loop, wall positions if open loop */
 const double trial_gain_positions[1][2] = {{0, 1}}; /* Gain changes within trial */
 const double trial_gain_values[1][1] = {{1}}; /* Gain values within trial */
 const double trial_test_period[1][2] = {{.25, .75}}; /* Trial test period */
 const unsigned trial_water_enabled[1] = {1}; /* Water enabled on trial */
-const double trial_water_pos[1][1] = {{.85}}; /* Trial water period */
-const double trial_water_range_min[1][1] = {{2}}; /* Trial corridor range for water */
-const double trial_water_range_max[1][1] = {{2}}; /* Trial corridor range for water */
+const double trial_water_pos[1][1] = {{0.85}}; /* Trial water period */
+const double trial_water_range_min[1][1] = {{0}}; /* Trial corridor range for water */
+const double trial_water_range_max[1][1] = {{30}}; /* Trial corridor range for water */
 const unsigned trial_water_range_type[1] = {0}; /* If 0 then range of wall distance (mm), if 1 then range of fraction of corridor with, if 2 then range of lateral run position */
-const double trial_water_drop_size[1][1] = {{25}}; /* Trial corridor range for water */
+const double trial_water_drop_size[1][1] = {{100}}; /* Trial corridor range for water */
 
 const unsigned trial_masking_flash[1] = {0}; /* 0 if off, 1 if blue, 2 if yellow */
 const double trial_mf_period[1][2] = {{0, .75}}; /* Trial masking flash period */
-const unsigned trial_mf_pulse_dur[1] = {0}; /* Trial masking flash pulse duration, if 0 then off ,1 = 2ms, 2 = 4ms etc */
+const unsigned trial_mf_pulse_dur[1] = {1}; /* Trial masking flash pulse duration, if 0 then off ,1 = 2ms, 2 = 4ms etc */
 const unsigned trial_mf_pulse_iti[1] = {0}; /* Trial masking flash iti, if 0 then continuous pulses,1 = 2ms, 2 = 4ms etc */
 
 const unsigned trial_photostim[1] = {0}; /* 0 if off, 1 if blue, 2 if yellow */
@@ -51,11 +51,11 @@ const double trial_ps_period[1][2] = {{.25, .75}}; /* Trial ps period */
 const unsigned trial_ps_pulse_dur[1] = {1}; /* Trial ps pulse duration, if 0 then off pulses,1 = 2ms, 2 = 4ms etc */
 const unsigned trial_ps_pulse_iti[1] = {0}; /* Trial ps iti, if 0 then continuous pulses,1 = 2ms, 2 = 4ms etc */
 const unsigned trial_ps_num_sites[1] = {1}; /* Trial ps number of siter */
-const double trial_ps_peak_power[1] = {40}; /* Peak laser power */
+const double trial_ps_peak_power[1] = {0.1}; /* Peak laser power */
 const unsigned trial_ps_stop_threshold[1] = {0}; /* 1 if stop photostimulation when mouse stopped */
 const unsigned trial_ps_closed_loop[1] = {0}; /* 1 if closed loop to corridor position */
-const double trial_ps_x_pos[1][1] = {{0}}; /* Trial ps site */
-const double trial_ps_y_pos[1][1] = {{0}}; /* Trial ps site */
+const double trial_ps_x_pos[1][1] = {{3.6}}; /* Trial ps site */
+const double trial_ps_y_pos[1][1] = {{-1.3}}; /* Trial ps site */
 
 /******************************************/
 /* DEFINE EXTERNAL AND INTERNAL FUNCTIONS */
@@ -89,29 +89,29 @@ void stop_state(void);
 /* Analog input channels */
 const unsigned ball_tracker_clock_ai_chan = 0; /* Clock signal from ball tracker */
 const unsigned cam_ai_chan[4] = {1, 2, 3, 4}; /* AI channels from camerea, x0, y0, x1, y1 */
-const unsigned scan_image_frame_clock_chan = 5; /* Frame clock from scan image */
-const unsigned lick_in_chan = 6; /* Lick signal*/
+const unsigned scan_image_frame_clock_chan = 6; /* Frame clock from scan image */
+const unsigned lick_in_chan = 5; /* Lick signal*/
 const unsigned scim_logging_chan = 7; /* Lick signal*/
 
 /* Analog output channels */
-const unsigned laser_power_ao_chan = 0; /* laser power */
+const unsigned laser_power_ao_chan = 8; /* laser power */
 const unsigned synch_ao_chan = 8; /* synch channel at 500 Hz */
-const unsigned iti_ao_chan = 1; /* AO intertrial trig  */
-const unsigned l_wall_lat_ao_chan = 2; /* left wall lateral position */
-const unsigned l_wall_for_ao_chan = 3; /* left wall forward position */
-const unsigned r_wall_lat_ao_chan = 4; /* right wall lateral position */
-const unsigned r_wall_for_ao_chan = 5; /* right wall lateral position */
-const unsigned x_mirror_ao_chan = 0; /* x galvo mirror */
-const unsigned y_mirror_ao_chan = 0; /* y galvo mirror */
+const unsigned iti_ao_chan = 5; /* AO intertrial trig  */
+const unsigned l_wall_lat_ao_chan = 0; /* left wall lateral position */
+const unsigned l_wall_for_ao_chan = 8; /* left wall forward position */
+const unsigned r_wall_lat_ao_chan = 1; /* right wall lateral position */
+const unsigned r_wall_for_ao_chan = 8; /* right wall lateral position */
+const unsigned x_mirror_ao_chan = 8; /* x galvo mirror */
+const unsigned y_mirror_ao_chan = 8; /* y galvo mirror */
 
 /* Analog output channel offsets */
 const double laser_power_ao_offset = 0;
 const double synch_ao_offset = 0;
-const double iti_ao_offset = -0.113;
-const double l_wall_lat_ao_offset = -0.118;
-const double l_wall_for_ao_offset = -0.12;
-const double r_wall_lat_ao_offset = -0.121;
-const double r_wall_for_ao_offset = -0.12;
+const double iti_ao_offset = -0.12;
+const double l_wall_lat_ao_offset = -0.115;
+const double l_wall_for_ao_offset = 0;
+const double r_wall_lat_ao_offset = -0.113;
+const double r_wall_for_ao_offset = 0;
 const double x_mirror_ao_offset = 0;
 const double y_mirror_ao_offset = 0;
 
@@ -120,23 +120,23 @@ const unsigned water_valve_trig = 0; /* Water valve trigger */
 const unsigned trial_iti_trig = 1;
 const unsigned wv_trig = 2;
 const unsigned bv_trig = 3;
-const unsigned sound_trig = 0;
+const unsigned sound_trig = 4;
 const unsigned synch_pulse = 5;
-const unsigned sound_trig_2 = 0;
+const unsigned sound_trig_2 = 7;
 const unsigned trial_on_trig = 6;
-const unsigned trial_ephys_trig = 8;
-const unsigned trial_test_trig = 0;
-const unsigned mf_dio_yellow = 0;
-const unsigned mf_dio_blue = 0;
+const unsigned trial_ephys_trig = 11;
+const unsigned trial_test_trig = 8;
+const unsigned mf_dio_yellow = 9;
+const unsigned mf_dio_blue = 10;
 
 
 /***************************************/
 /***************************************/
 /* DEFINE CONSTANTS */
 /* Convert to steps params */
-const double zero_V[4] =  {2.59, 2.61, 2.60, 2.61};
+const double zero_V[4] =  {2.538, 2.542, 2.554, 2.538};
 const double step_V =  0.154;
-const double A_calib[3][4] =  {{-0.0665, -3.8941, 0.0835, 0.0428}, {0.0566, 0.0558, 0.1107, 4.0800}, {-2.0361, 0, -2.2392, 0}};
+const double A_calib[3][4] =  {{0, 5.5, 0, 0}, {0, 0, 0, 5.5}, {-2.75, 0, -2.75, 0}};
 
 const double sample_freq =  500;
 const unsigned ai_threshold =  3; /* Threshold ai signal needs to pass to be considered high */
@@ -145,16 +145,16 @@ const unsigned speed_time_length =  250;
 const double wall_ball_gain =  -0.2;
 
 const double max_wall_pos =  40;
-const double max_cor_width = 0;
-const double l_for_pos_default = 0;
-const double r_for_pos_default = 0;
+const double max_cor_width =  99;
+const double l_for_pos_default =  20;
+const double r_for_pos_default =  20;
 
 const unsigned bv_period =  5; /* behavioural video frame period / 2 in ms */
 const unsigned wv_period =  1; /* whisker video frame period / 2 in ms */
 
 const double valve_open_time_default =  50; /* Time water valve open for at 500 Hz */
 
-const double max_galvo_pos = 0;
+const double max_galvo_pos =  5;
 
 const unsigned ao_trial_trig_on =  1;
 

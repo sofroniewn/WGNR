@@ -5,11 +5,11 @@
 % Parameters for WGNR GUI
 rig_config.rig_name = 'Imaging_rig'; % BASE DIRECTORY
 rig_config.rig_room = 'JFRC_2W.333'; % BASE DIRECTORY
-rig_config.base_dir = 'E:\Documents and Settings\user\My Documents\MATLAB\code\wgnr\behaviour\WGNR_GUI'; % BASE DIRECTORY
-rig_config.comp_ip_address = '10.102.22.40'; % COMPUTER IP ADDRESS
+rig_config.base_dir = 'C:\Users\labadmin\Documents\GitHub\WGNR'; % BASE DIRECTORY
+rig_config.comp_ip_address = '10.102.32.54'; % COMPUTER IP ADDRESS
 rig_config.globals_name = 'globals_WGNR.c'; % base globals file
 rig_config.treadmill_str = 'treadmill4';
-rig_config.data_dir = 'E:\Documents and Settings\user\My Documents\WGNR_DATA'; % DATA DIRECTORY
+rig_config.data_dir = 'F:\mVR_DATA'; % DATA DIRECTORY
 rig_config.TCP_IP_address = '10.102.22.49';
 rig_config.accesory_path = 'W:\Nick\WGNR_DATA';
 
@@ -18,20 +18,20 @@ rig_config.accesory_path = 'W:\Nick\WGNR_DATA';
 % AI input channels
 rig_config.ai_channels_ball_tracker_clock = '0';
 rig_config.ai_channels_cam = '{1, 2, 3, 4}';
-rig_config.ai_channels_scan_image_frame_clock = '5';
-rig_config.ai_channels_lick = '6';
+rig_config.ai_channels_scan_image_frame_clock = '6';
+rig_config.ai_channels_lick = '5';
 rig_config.ai_channels_scim_logging = '7';
 
 % AO output channels - NOTE CHANNEL 8 is not functional
-rig_config.ao_channels_laser_power = '0';
+rig_config.ao_channels_laser_power = '8';
 rig_config.ao_channels_synch = '8';
-rig_config.ao_channels_iti = '1';
-rig_config.ao_channels_l_wall_lat = '2';
-rig_config.ao_channels_l_wall_for = '3';
-rig_config.ao_channels_r_wall_lat = '4';
-rig_config.ao_channels_r_wall_for = '5';
-rig_config.ao_channels_x_mirror = '6';
-rig_config.ao_channels_y_mirror = '7';
+rig_config.ao_channels_iti = '5';
+rig_config.ao_channels_l_wall_lat = '0';
+rig_config.ao_channels_l_wall_for = '8';
+rig_config.ao_channels_r_wall_lat = '1';
+rig_config.ao_channels_r_wall_for = '8';
+rig_config.ao_channels_x_mirror = '8';
+rig_config.ao_channels_y_mirror = '8';
 
 % AO offset values
 rig_config.ao_offsets = [-0.115; -0.113; -0.118; -0.120; -0.121; -0.120; -0.115; -0.115; 0];
@@ -53,8 +53,8 @@ rig_config.dio_mf_dio_blue = '10';
 
 % Ball tracker calibration values
 %rig_config.A_calib_str = '{{-0.1331, -7.7882, 0.1671, 0.0856}, {0.1133, 0.1117, 0.2213, 8.1600}, {-4.0722, 0, -4.4783, 0}}'; % Ball motion calibration matrix
-rig_config.A_calib_str = '{{-0.0665, -3.8941, 0.0835, 0.0428}, {0.0566, 0.0558, 0.1107, 4.0800}, {-2.0361, 0, -2.2392, 0}}';
-rig_config.zero_V_str = '{2.59, 2.61, 2.60, 2.61}';
+rig_config.A_calib_str = '{{0, 5.5, 0, 0}, {0, 0, 0, 5.5}, {-2.75, 0, -2.75, 0}}';
+rig_config.zero_V_str = '{2.538, 2.542, 2.554, 2.538}';
 rig_config.step_V = 0.154;
 
 % General parameters
