@@ -358,7 +358,7 @@ switch get(hObject,'value')
         str_animal_number = get(handles.edit_animal_number,'String');
         folder_name = fullfile(rig_config.data_dir,['anm-0' str_animal_number],['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],'behaviour');
         %fname_log = fullfile(folder_name, sprintf('log-%d.txt',init_trial_num));
-        fname_globals = fullfile(folder_name, sprintf('globals-%d.c',init_trial_num));
+        fname_globals = fullfile(folder_name, sprintf('globals-%04d.c',init_trial_num));
         handles.fname_base = [folder_name '\'];
            
         % Disable TCP/IP
@@ -429,8 +429,8 @@ switch get(hObject,'value')
             end
             copyfile(fileOut,fname_globals);
             % delete(fileOut);
-            save(fullfile(folder_name, sprintf('rig-%d.mat',init_trial_num)),'rig_config');
-            save(fullfile(folder_name, sprintf('config-%d.mat',init_trial_num)),'trial_config');
+            save(fullfile(folder_name, sprintf('rig-%04d.mat',init_trial_num)),'rig_config');
+            save(fullfile(folder_name, sprintf('config-%04d.mat',init_trial_num)),'trial_config');
             %save(fullfile(folder_name, sprintf('ps-%d.txt',init_trial_num)),'ps_sites');
             %fid = fopen(fname_log,'w'); % Open text file on Windows Machine for saving values
             %if fid == -1
