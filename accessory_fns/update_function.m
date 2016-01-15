@@ -41,8 +41,8 @@ if isempty(varLog) == 0 && update_display_on == 1
     % Convert to ball roation
     
     d_ball_pos = cam_vel_step*handles.A_inv';
-    trial_mat(1,:) = d_ball_pos(:,1);
-    trial_mat(2,:) = d_ball_pos(:,2);
+    trial_mat(1,:) = 500*d_ball_pos(:,1);
+    trial_mat(2,:) = 500*d_ball_pos(:,2);
     
     trial_mat(3,:) = mod(varLog(3:num_log_items:end),1000)/10;
     trial_mat(4,:) = floor(varLog(3:num_log_items:end)/1000)/10;
@@ -51,7 +51,7 @@ if isempty(varLog) == 0 && update_display_on == 1
     trial_mat(7,:) = floor(mod(varLog(1:num_log_items:end),100))/10 - 5;
 
     log_cur_state = varLog(4:num_log_items:end);
-    trial_mat(8,:) = 1 + mod(log_cur_state,100);
+    trial_mat(8,:) = mod(log_cur_state,100);
     log_state_a = mod(floor(log_cur_state/100),10);
     log_state_b = mod(floor(log_cur_state/1000),10);
     log_state_c = mod(floor(log_cur_state/10000),10);
@@ -63,8 +63,8 @@ if isempty(varLog) == 0 && update_display_on == 1
     trial_mat(13,:) = mod(floor(log_state_b/2),2);
     trial_mat(14,:) = mod(log_state_b,2);
     trial_mat(15,:) = mod(floor(log_state_c/4),2);
-    trial_mat(16,:) = mod(floor(log_state_c/2),2);
-    trial_mat(17,:) = mod(log_state_c,2);
+    %trial_mat(16,:) = mod(floor(log_state_c/2),2);
+    trial_mat(16,:) = mod(log_state_c,2);
     
     % Check if new trial - if so chunck and save data
     trial_info = get(handles.text_num_trials,'UserData');
@@ -78,6 +78,8 @@ if isempty(varLog) == 0 && update_display_on == 1
         trial_matrix = [trial_info.trial_mat trial_mat(:,1:ind-1)];
         trial_info.trial_mat = trial_mat(:,ind:end);
         data = trial_matrix;
+        data(17,:) = [0:size(data,2)-1]/500;
+        data(18,:) = trial_num;
         if checkbox_log_value
             save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
         end
@@ -90,7 +92,7 @@ if isempty(varLog) == 0 && update_display_on == 1
     trial_info.iti_end = trial_mat(handles.iti_ind,end);
     set(handles.text_num_trials,'UserData',trial_info);
 
-    speed_vect =  sqrt(trial_mat(1,:).^2 +  trial_mat(2,:).^2)*500;
+    speed_vect =  sqrt(trial_mat(1,:).^2 +  trial_mat(2,:).^2);
     
     % Update plots
     speed = get(handles.speed_plot,'Ydata')';

@@ -75,11 +75,11 @@ cd(rig_config.base_dir)
 % addpath(fullfile('.','accessory_fns','plot_functions','histogram_plots'));
 
 handles.A_inv = rig_config.A_inv;
-handles.names = {'xSpeed','ySpeed','corPos','corWidth','laserPower','xMirrorPos','yMirrorPos', ...
-    'trialNum','itiPeriod','lickState','trialWater','running', ...
-    'maskingFlash','scimState','extWater','scimLogging','testVal'};
+handles.names = {'xSpeed','ySpeed','corPos','corWidth','laserPower','xMirror','yMirror', ...
+    'index','iti','licks','reward','running', ...
+    'maskingFlash','trigger','extWater','samplePeriod', 'time','number'};
 
-handles.iti_ind = find(strcmp(handles.names,'itiPeriod'));
+handles.iti_ind = find(strcmp(handles.names,'iti'));
 
 % Load trial configuration file
 load_trial_config_Callback(handles.load_trial_config, eventdata, handles);
@@ -218,6 +218,8 @@ switch get(hObject,'value')
             trial_num = trial_info.trial_num;
             data = trial_info.trial_mat;
             if ~isempty(data)
+                data(17,:) = [0:size(data,2)-1]/500;
+                data(18,:) = trial_num;
                 names = handles.names;
                 save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
             end
