@@ -242,7 +242,10 @@ switch get(hObject,'value')
         set(handles.edit_date,'Enable','on')
         set(handles.load_trial_config,'Enable','on')
         set(handles.checkbox_stream_behaviour,'Enable','on')
-
+        
+        init_trial_num = str2num(get(handles.text_num_trials,'String')) +1;
+        set(handles.edit_run_number,'String',num2str(init_trial_num));
+        
         % Disable water buttons
         set(handles.pushbutton_water,'Enable','off')
         set(handles.speed_thresh_up,'Enable','off')
@@ -270,7 +273,8 @@ switch get(hObject,'value')
         
         
         % Reset GUI for logging
-        trial_info.trial_num = 1;
+        init_trial_num = str2num(get(handles.edit_run_number,'String'));
+        trial_info.trial_num = init_trial_num;
         trial_info.iti_end = 1;
         trial_info.trial_mat = [];
         set(handles.text_num_trials,'UserData',trial_info);
@@ -283,7 +287,7 @@ switch get(hObject,'value')
         set(handles.speed_thresh_str,'String','Off');
         set(handles.text_run_time,'String',sprintf('%.2f s',0));
         
-        set(handles.text_num_trials,'String',num2str(0));
+        set(handles.text_num_trials,'String',num2str(init_trial_num));
         set(handles.text_cur_trial_num,'String',num2str(0));
         set(handles.text_cur_cor_pos,'String',num2str(0));
         set(handles.text_cur_cor_width,'String',num2str(0));
@@ -335,9 +339,8 @@ switch get(hObject,'value')
         % Create folder names
         str_date = get(handles.edit_date,'String');
         str_animal_number = get(handles.edit_animal_number,'String');
-        str_run_number = get(handles.edit_run_number,'String');
-        folder_name = fullfile(rig_config.data_dir,['anm_0' str_animal_number],['20' str_date(1:2) '_' str_date(3:4) '_' str_date(5:6)],['run_' str_run_number],'behaviour');
-        file_id_name = ['anm_0',str_animal_number,'_20' str_date(1:2) 'x' str_date(3:4) 'x' str_date(5:6) '_run_',str_run_number,'_'];
+        folder_name = fullfile(rig_config.data_dir,['anm_0' str_animal_number],['20' str_date(1:2) '_' str_date(3:4) '_' str_date(5:6)],'behaviour');
+        file_id_name = ['anm_0',str_animal_number,'_20' str_date(1:2) 'x' str_date(3:4) 'x' str_date(5:6) '_'];
         fname_base = fullfile(folder_name,file_id_name);
         fname_log = [fname_base 'log.txt'];
         fname_globals = [fname_base rig_config.globals_name];

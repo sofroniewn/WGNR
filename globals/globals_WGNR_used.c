@@ -6,7 +6,7 @@
 /******************************************/
 /* TRIAL PARAMETERS SET FROM MATLAB */
 const unsigned trial_num_types = 1; /* Number of trial types */
-const unsigned trial_num_turns = 1; /* Max number of trial turns */
+const unsigned trial_num_turns = 3; /* Max number of trial turns */
 const unsigned trial_num_gain = 1; /* Max number of trial gain changes */
 const unsigned trial_num_open_loop = 2; /* Max number of trial corridor open loop changes */
 const unsigned trial_num_cor_widths = 2; /* Max number of trial corridor width changes */
@@ -19,8 +19,8 @@ const unsigned trial_num_repeats[1] = {1}; /* 1 if random, num repeats */
 const unsigned laser_calibration_mode = 0;
 
 const unsigned trial_type[1] = {1}; /* Trial type, 1 for distance, 0 for time */
-const double trial_duration[1] = {100}; /* Trial duration, (cm) for distance, (s) for time */
-const double trial_timeout[1] = {12}; /* Trial timeout (s) */
+const double trial_duration[1] = {999}; /* Trial duration, (cm) for distance, (s) for time */
+const double trial_timeout[1] = {5}; /* Trial timeout (s) */
 const double trial_iti[1] = {1}; /* Intertrial interval (s) */
 const unsigned trial_left_wall[1] = {0}; /* 1 if left wall on, 0 if left wall off */
 const unsigned trial_right_wall[1] = {0}; /* 1 if right wall on, 0 if right wall off */
@@ -29,15 +29,15 @@ const double trial_ol_positions[1][2] = {{0, 1}}; /* Change positions in corrido
 const double trial_ol_values[1][2] = {{15, 15}}; /* Corridor width (mm) */
 const double trial_cor_width_positions[1][2] = {{0, 1}}; /* Change positions in corridor width */
 const double trial_cor_width[1][2] = {{30, 30}}; /* Corridor width (mm) */
-const double trial_turn_positions[1][2] = {{0,  1}}; /* Turn positions within trial */
-const double trial_turn_values[1][1] = {{0}}; /* Turn angles if closed loop, wall positions if open loop */
+const double trial_turn_positions[1][4] = {{0, .25, .75, 1}}; /* Turn positions within trial */
+const double trial_turn_values[1][3] = {{0, -11.3, 0}}; /* Turn angles if closed loop, wall positions if open loop */
 const double trial_gain_positions[1][2] = {{0, 1}}; /* Gain changes within trial */
 const double trial_gain_values[1][1] = {{1}}; /* Gain values within trial */
 const double trial_test_period[1][2] = {{.25, .75}}; /* Trial test period */
-const unsigned trial_water_enabled[1] = {1}; /* Water enabled on trial */
+const unsigned trial_water_enabled[1] = {0}; /* Water enabled on trial */
 const double trial_water_pos[1][1] = {{0.85}}; /* Trial water period */
-const double trial_water_range_min[1][1] = {{0}}; /* Trial corridor range for water */
-const double trial_water_range_max[1][1] = {{30}}; /* Trial corridor range for water */
+const double trial_water_range_min[1][1] = {{2}}; /* Trial corridor range for water */
+const double trial_water_range_max[1][1] = {{28}}; /* Trial corridor range for water */
 const unsigned trial_water_range_type[1] = {0}; /* If 0 then range of wall distance (mm), if 1 then range of fraction of corridor with, if 2 then range of lateral run position */
 const double trial_water_drop_size[1][1] = {{100}}; /* Trial corridor range for water */
 
