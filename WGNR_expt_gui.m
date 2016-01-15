@@ -230,11 +230,11 @@ switch get(hObject,'value')
         delete(handles.obj_t);
         disp(sprintf('Run Stopped by User\n'));
         %Close log file if open
-        checkbox_log_value = get(handles.checkbox_log,'Value');
-        if checkbox_log_value == 1
-            fclose(handles.fid);
-        else
-        end
+%        checkbox_log_value = get(handles.checkbox_log,'Value');
+%         if checkbox_log_value == 1
+%             %Zfclose(handles.fid);
+%         else
+%         end
         % Enable log buttons
         pause(.5);
         set(handles.togglebutton_start_RTLSM,'backgroundcolor','r','string','Start RTFSM');
@@ -357,7 +357,7 @@ switch get(hObject,'value')
         str_date = get(handles.edit_date,'String');
         str_animal_number = get(handles.edit_animal_number,'String');
         folder_name = fullfile(rig_config.data_dir,['anm-0' str_animal_number],['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],'behaviour');
-        fname_log = fullfile(folder_name, sprintf('log-%d.txt',init_trial_num));
+        %fname_log = fullfile(folder_name, sprintf('log-%d.txt',init_trial_num));
         fname_globals = fullfile(folder_name, sprintf('globals-%d.c',init_trial_num));
         handles.fname_base = [folder_name '\'];
            
@@ -429,15 +429,15 @@ switch get(hObject,'value')
             end
             copyfile(fileOut,fname_globals);
             % delete(fileOut);
-            save(fullfile(folder_name, sprintf('rig-%d.txt',init_trial_num)),'rig_config');
-            save(fullfile(folder_name, sprintf('config-%d.txt',init_trial_num)),'trial_config');
+            save(fullfile(folder_name, sprintf('rig-%d.mat',init_trial_num)),'rig_config');
+            save(fullfile(folder_name, sprintf('config-%d.mat',init_trial_num)),'trial_config');
             %save(fullfile(folder_name, sprintf('ps-%d.txt',init_trial_num)),'ps_sites');
-            fid = fopen(fname_log,'w'); % Open text file on Windows Machine for saving values
-            if fid == -1
-                error('File Not Created')
-            else
-            end
-            handles.fid = fid;
+            %fid = fopen(fname_log,'w'); % Open text file on Windows Machine for saving values
+            %if fid == -1
+            %    error('File Not Created')
+            %else
+            %end
+            %handles.fid = fid;
         else
         end
         

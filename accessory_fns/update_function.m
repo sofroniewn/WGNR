@@ -10,10 +10,10 @@ set(obj,'UserData',numVarLog+length(varLog));
 
 %%% WRITE LOGGED VALUES TO FILE
 checkbox_log_value = get(handles.checkbox_log,'Value');
-if checkbox_log_value == 1
-    fprintf(handles.fid,'%d ',varLog);
-else
-end
+% if checkbox_log_value == 1
+%     fprintf(handles.fid,'%d ',varLog);
+% else
+% end
 
 update_display_on = 1;
 num_log_items = 4;
