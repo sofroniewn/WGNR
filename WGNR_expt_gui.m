@@ -211,6 +211,21 @@ switch get(hObject,'value')
         pause(1);
         Halt(handles.sm);
         pause(2);
+        %%%%%%%%%%%%%%%%%%%%%%%%
+        % Check if new trial - if so chunck and save data
+        if get(handles.checkbox_log,'Value')
+            trial_info = get(handles.text_num_trials,'UserData');
+            trial_num = trial_info.trial_num;
+            data = trial_info.trial_mat;
+            if ~isempty(data)
+                names = handles.names;
+                save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+            end
+        end
+        %             if get(handles.checkbox_stream_behaviour,'Value');
+        %                 save([handles.stream_fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+        %             end
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         stop(handles.obj_t)
         delete(handles.obj_t);
         disp(sprintf('Run Stopped by User\n'));
