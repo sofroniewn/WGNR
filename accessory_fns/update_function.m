@@ -156,7 +156,7 @@ if isempty(varLog) == 0 && update_display_on == 1
     set(handles.text_cur_x_mirr_pos,'String',num2str(trial_mat(6,end)));
     
     
-    d_ball_pos = trial_mat(1:2,:)';
+    d_ball_pos = trial_mat(1:2,:)'/500;
     x_pos = get(handles.pos_plot,'Xdata')';
     y_pos = get(handles.pos_plot,'Ydata')';
     xy_vel_cum = repmat([x_pos(end) y_pos(end)],length(d_ball_pos(:,1)),1) + cumsum(d_ball_pos(:,1:2)/100);
