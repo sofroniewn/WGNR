@@ -81,11 +81,16 @@ if isempty(varLog) == 0 && update_display_on == 1
         data(17,:) = [0:size(data,2)-1]/500;
         data(18,:) = trial_num;
         if checkbox_log_value
-            save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+            %save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+            fid = fopen(sprintf('trial-%04d.csv',trial_num), 'w');
+            fprintf(fid, '%s,', names{1,1:end-1}) ;
+            fprintf(fid, '%s\n', names{1,end}) ;
+            fclose(fid)
+            dlmwrite(sprintf('trial-%04d.csv',trial_num), data', '-append');
         end
-        if get(handles.checkbox_stream_behaviour,'Value');
-           save([handles.stream_fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
-        end
+        %if get(handles.checkbox_stream_behaviour,'Value');
+        %   save([handles.stream_fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+        %end
         trial_num = trial_num+1;
     end
     trial_info.trial_num = trial_num;

@@ -221,7 +221,12 @@ switch get(hObject,'value')
                 data(17,:) = [0:size(data,2)-1]/500;
                 data(18,:) = trial_num;
                 names = handles.names;
-                save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+                %save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
+                fid = fopen(sprintf('trial-%04d.csv',trial_num), 'w');
+                fprintf(fid, '%s,', names{1,1:end-1}) ;
+                fprintf(fid, '%s\n', names{1,end}) ;
+                fclose(fid)
+                dlmwrite(sprintf('trial-%04d.csv',trial_num), data', '-append');
             end
         end
         %             if get(handles.checkbox_stream_behaviour,'Value');
