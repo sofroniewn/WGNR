@@ -79,10 +79,10 @@ if isempty(varLog) == 0 && update_display_on == 1
         trial_info.trial_mat = trial_mat(:,ind:end);
         data = trial_matrix;
         if checkbox_log_value
-            save([handles.fname_base sprintf('trial_%04d.mat',trial_num)],'data','names');
+            save([handles.fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
         end
         if get(handles.checkbox_stream_behaviour,'Value');
-           save([handles.stream_fname_base sprintf('trial_%04d.mat',trial_num)],'data','names');
+           save([handles.stream_fname_base sprintf('trial-%04d.mat',trial_num)],'data','names');
         end
         trial_num = trial_num+1;
     end

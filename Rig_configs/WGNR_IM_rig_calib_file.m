@@ -9,7 +9,7 @@ rig_config.base_dir = 'C:\Users\labadmin\Documents\GitHub\WGNR'; % BASE DIRECTOR
 rig_config.comp_ip_address = '10.102.32.54'; % COMPUTER IP ADDRESS
 rig_config.globals_name = 'globals_WGNR.c'; % base globals file
 rig_config.treadmill_str = 'treadmill4';
-rig_config.data_dir = 'F:\mVR_DATA'; % DATA DIRECTORY
+rig_config.data_dir = 'F:\WGNR_DATA'; % DATA DIRECTORY
 rig_config.TCP_IP_address = '10.102.22.49';
 rig_config.accesory_path = 'W:\Nick\WGNR_DATA';
 

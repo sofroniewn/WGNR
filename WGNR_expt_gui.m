@@ -243,8 +243,10 @@ switch get(hObject,'value')
         set(handles.load_trial_config,'Enable','on')
         set(handles.checkbox_stream_behaviour,'Enable','on')
         
-        init_trial_num = str2num(get(handles.text_num_trials,'String')) +1;
-        set(handles.edit_run_number,'String',num2str(init_trial_num));
+        if get(handles.checkbox_log,'Value')
+            init_trial_num = str2num(get(handles.text_num_trials,'String')) +1;
+            set(handles.edit_run_number,'String',num2str(init_trial_num));
+        end
         
         % Disable water buttons
         set(handles.pushbutton_water,'Enable','off')
@@ -259,16 +261,16 @@ switch get(hObject,'value')
         % Load ps_sites file
         str_animal_number = get(handles.edit_animal_number,'String');
         ps_file_name = fullfile(rig_config.data_dir,['anm_0' str_animal_number],'ISI','photostim_sites.m');
-        if exist(ps_file_name) == 2
-            run(ps_file_name);
-        else
+%         if exist(ps_file_name) == 2
+%             run(ps_file_name);
+%         else
             ps_file_name_default = fullfile(handles.pathstr,'Rig_configs','DEFAULT_PS','photostim_sites.m');
             run(ps_file_name_default);
-            if checkbox_log_value == 1
-                mkdir(fullfile(rig_config.data_dir,['anm_0' str_animal_number],'ISI'));
-                copyfile(ps_file_name_default,ps_file_name);
-            end
-        end
+%             if checkbox_log_value == 1
+%                 mkdir(fullfile(rig_config.data_dir,['anm_0' str_animal_number],'ISI'));
+%                 copyfile(ps_file_name_default,ps_file_name);
+%             end
+%        end
         
         
         
@@ -339,12 +341,10 @@ switch get(hObject,'value')
         % Create folder names
         str_date = get(handles.edit_date,'String');
         str_animal_number = get(handles.edit_animal_number,'String');
-        folder_name = fullfile(rig_config.data_dir,['anm_0' str_animal_number],['20' str_date(1:2) '_' str_date(3:4) '_' str_date(5:6)],'behaviour');
-        file_id_name = ['anm_0',str_animal_number,'_20' str_date(1:2) 'x' str_date(3:4) 'x' str_date(5:6) '_'];
-        fname_base = fullfile(folder_name,file_id_name);
-        fname_log = [fname_base 'log.txt'];
-        fname_globals = [fname_base rig_config.globals_name];
-        handles.fname_base = fname_base;
+        folder_name = fullfile(rig_config.data_dir,['anm-0' str_animal_number],['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],'behaviour');
+        fname_log = fullfile(folder_name, sprintf('log-%d.txt',init_trial_num));
+        fname_globals = fullfile(folder_name, sprintf('globals-%d.c',init_trial_num));
+        handles.fname_base = [folder_name '\'];
            
         % Disable TCP/IP
         set(handles.togglebutton_TCP,'Enable','off')
@@ -410,13 +410,13 @@ switch get(hObject,'value')
             if exist(folder_name) ~= 7
                 mkdir(folder_name);
             else
-                error('Folder already exists - do not overwrite')
+                %error('Folder already exists - do not overwrite')
             end
             copyfile(fileOut,fname_globals);
             % delete(fileOut);
-            save([fname_base 'rig_config.mat'],'rig_config');
-            save([fname_base 'trial_config.mat'],'trial_config');
-            save([fname_base 'ps_sites.mat'],'ps_sites');
+            save(fullfile(folder_name, sprintf('rig-%d.txt',init_trial_num)),'rig_config');
+            save(fullfile(folder_name, sprintf('config-%d.txt',init_trial_num)),'trial_config');
+            %save(fullfile(folder_name, sprintf('ps-%d.txt',init_trial_num)),'ps_sites');
             fid = fopen(fname_log,'w'); % Open text file on Windows Machine for saving values
             if fid == -1
                 error('File Not Created')
@@ -427,19 +427,19 @@ switch get(hObject,'value')
         end
         
         % If streaming behaviour to non local source 
-        if get(handles.checkbox_stream_behaviour,'Value')
-            stream_folder_name = fullfile(rig_config.accesory_path,['anm_0' str_animal_number],['20' str_date(1:2) '_' str_date(3:4) '_' str_date(5:6)],['run_' str_run_number],'behaviour');
-            stream_fname_base = fullfile(stream_folder_name,file_id_name);
-            if exist(stream_folder_name) ~= 7
-                mkdir(stream_folder_name);
-            end
-            stream_fname_globals = [stream_fname_base rig_config.globals_name];
-            handles.stream_fname_base = stream_fname_base;
-            copyfile(fileOut,stream_fname_globals);
-            save([stream_fname_base 'rig_config.mat'],'rig_config');
-            save([stream_fname_base 'trial_config.mat'],'trial_config');
-            save([stream_fname_base 'ps_sites.mat'],'ps_sites');
-        end
+%         if get(handles.checkbox_stream_behaviour,'Value')
+%             stream_folder_name = fullfile(rig_config.accesory_path,['anm_0' str_animal_number],['20' str_date(1:2) '_' str_date(3:4) '_' str_date(5:6)],['run_' str_run_number],'behaviour');
+%             stream_fname_base = fullfile(stream_folder_name,file_id_name);
+%             if exist(stream_folder_name) ~= 7
+%                 mkdir(stream_folder_name);
+%             end
+%             stream_fname_globals = [stream_fname_base rig_config.globals_name];
+%             handles.stream_fname_base = stream_fname_base;
+%             copyfile(fileOut,stream_fname_globals);
+%             save([stream_fname_base 'rig_config.mat'],'rig_config');
+%             save([stream_fname_base 'trial_config.mat'],'trial_config');
+%             save([stream_fname_base 'ps_sites.mat'],'ps_sites');
+%         end
 
 
 
