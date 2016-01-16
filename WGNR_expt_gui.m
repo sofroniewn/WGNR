@@ -77,7 +77,7 @@ cd(rig_config.base_dir)
 handles.A_inv = rig_config.A_inv;
 handles.names = {'xSpeed','ySpeed','corPos','corWidth','laserPower','xMirror','yMirror', ...
     'id','iti','licks','reward','running', ...
-    'maskingFlash','trigger','extWater','samplePeriod','number','time'};
+    'maskingFlash','frames','extWater','samplePeriod','number','time'};
 
 handles.iti_ind = find(strcmp(handles.names,'iti'));
 
