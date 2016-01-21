@@ -846,7 +846,6 @@ void tick_func(void) {
                 scim_logging = 1;
             } else {
                 scim_logging = 0;
-                scim_state = 0;
             }
             
             /* Create Log Vectors */
