@@ -282,7 +282,7 @@ switch get(hObject,'value')
         
         % Load ps_sites file
         str_animal_number = get(handles.edit_animal_number,'String');
-        ps_file_name = fullfile(rig_config.data_dir,['anm_0' str_animal_number],'ISI','photostim_sites.m');
+%        ps_file_name = fullfile(rig_config.data_dir,['anm_0' str_animal_number],'ISI','photostim_sites.m');
 %         if exist(ps_file_name) == 2
 %             run(ps_file_name);
 %         else
@@ -363,7 +363,7 @@ switch get(hObject,'value')
         % Create folder names
         str_date = get(handles.edit_date,'String');
         str_animal_number = get(handles.edit_animal_number,'String');
-        folder_name = fullfile(rig_config.data_dir,['anm-0' str_animal_number],['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],'behaviour');
+        folder_name = fullfile(rig_config.data_dir,['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],['anm-0' str_animal_number]);
         %fname_log = fullfile(folder_name, sprintf('log-%d.txt',init_trial_num));
         fname_globals = fullfile(folder_name, sprintf('globals-%04d.c',init_trial_num));
         handles.fname_base = [folder_name '\'];
