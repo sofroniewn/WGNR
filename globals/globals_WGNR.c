@@ -331,7 +331,7 @@ double wall_mm_to_vlt(double x) {
     if (x>40) {
         x = 40;
     }
-    return (x-20)/2.22;
+    return (x-20)/2.5;
 }
 
 /***********************************/
@@ -864,7 +864,7 @@ void tick_func(void) {
                 log_cor_pos = floor(10*cor_pos) + 1000*floor(10*(cor_width));
                 log_photo_stim = floor(10*laser_power)*10000 + floor((x_mirror_pos+max_galvo_pos)*10)*100 + floor((y_mirror_pos+max_galvo_pos)*10);
             }
-            /* log_cor_pos = cam_vel_ai_vlt[0]*1000;*/
+            /*log_cor_pos = cam_vel_ai_vlt[3]*1000;*/
             logValue("ps", log_photo_stim);    /* stim code */
             logValue("bm", log_ball_motion); /* ball_motion_vector code */
             logValue("wm", log_cor_pos);       /* wall pos */
