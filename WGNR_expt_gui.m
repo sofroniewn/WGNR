@@ -363,7 +363,8 @@ switch get(hObject,'value')
         % Create folder names
         str_date = get(handles.edit_date,'String');
         str_animal_number = get(handles.edit_animal_number,'String');
-        folder_name = fullfile(rig_config.data_dir,['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],['anm-0' str_animal_number]);
+        %folder_name = fullfile(rig_config.data_dir,['20' str_date(1:2) '-' str_date(3:4) '-' str_date(5:6)],['anm-0' str_animal_number]);
+        folder_name = fullfile(rig_config.data_dir,sprintf('%06d',str2double(str_animal_number)),'behavior');
         %fname_log = fullfile(folder_name, sprintf('log-%d.txt',init_trial_num));
         fname_globals = fullfile(folder_name, sprintf('globals-%04d.c',init_trial_num));
         handles.fname_base = [folder_name '\'];
@@ -613,6 +614,8 @@ function edit_animal_number_Callback(hObject, eventdata, handles)
 % hObject    handle to edit_animal_number (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(hObject,'String',sprintf('%06d',str2double(get(hObject,'String'))))
+%        str2double(get(hObject,'String'))
 
 % Hints: get(hObject,'String') returns contents of edit_animal_number as text
 %        str2double(get(hObject,'String')) returns contents of edit_animal_number as a double

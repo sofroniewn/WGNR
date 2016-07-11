@@ -9,7 +9,7 @@ rig_config.base_dir = 'C:\Users\labadmin\Documents\GitHub\WGNR'; % BASE DIRECTOR
 rig_config.comp_ip_address = '10.102.32.54'; % COMPUTER IP ADDRESS
 rig_config.globals_name = 'globals_WGNR.c'; % base globals file
 rig_config.treadmill_str = 'treadmill4';
-rig_config.data_dir = 'F:\WGNR_DATA'; % DATA DIRECTORY
+rig_config.data_dir = 'F:\session'; % DATA DIRECTORY
 rig_config.TCP_IP_address = '10.102.22.49';
 rig_config.accesory_path = 'W:\Nick\WGNR_DATA';
 
@@ -54,7 +54,8 @@ rig_config.dio_mf_dio_blue = '10';
 % Ball tracker calibration values
 %rig_config.A_calib_str = '{{-0.1331, -7.7882, 0.1671, 0.0856}, {0.1133, 0.1117, 0.2213, 8.1600}, {-4.0722, 0, -4.4783, 0}}'; % Ball motion calibration matrix
 rig_config.A_calib_str = '{{0, 5.5, 0, 0}, {0, 0, 0, 5.5}, {-2.75, 0, -2.75, 0}}';
-rig_config.zero_V_str = '{2.538, 2.542, 2.554, 2.538}';
+%rig_config.zero_V_str = '{2.538, 2.542, 2.554, 2.538}';
+rig_config.zero_V_str = '{2.610, 2.616, 2.626, 2.612}';
 rig_config.step_V = 0.154;
 
 % General parameters
